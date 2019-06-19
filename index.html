@@ -10,7 +10,105 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-  <body>
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Anytime is Train Time</h1>
+            <p class="lead">Choo Choo. Chee Chee</p>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th colspan="5">Current Train Schedule</th>
+            </tr>
+            <tr>
+                <th scope="col">Train Name</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Frequency (min)</th>
+                <th scope="col">Next Arrival</th>
+                <th scope="col">Minutes Away</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Guadalupe</th>
+                <td>Mexico City,Mexico</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">Eifell</th>
+                <td>Paris,France</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">St Louis</th>
+                <td>New York,New York</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <!-- Here user input will be appended -->
+            </tbody>
+          </table>
+
+          <br>
+
+          <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th colspan="5">Add Train</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                        <form>
+                            <div class="form-group row">
+                                <label for="train-name" class="col-sm-2 col-form-label">Train Name</label>
+                                <div class="col-sm-11">
+                                    <input type="trainName" class="form-control" id="train-name" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="destination" class="col-sm-2 col-form-label">Destination</label>
+                                <div class="col-sm-11">
+                                    <input type="train-destination" class="form-control" id="destination" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="first-train-time" class="col-sm-3 col-form-label">First Train Time (HH:mm - military time)</label>
+                                <div class="col-sm-11">
+                                    <input type="first-train" class="form-control" id="first-train-time" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="frequency" class="col-sm-2 col-form-label">Frequency (min)</label>
+                                <div class="col-sm-11">
+                                    <input type="frequency-min" class="form-control" id="frequency" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </th>
+                  </tr>
+                  <!-- Here user input will be appended -->
+                </tbody>
+              </table>
+
+              <br>
+
+             
       
     <!-- Optional JavaScript -->
     <!-- jQuery -->
