@@ -12,7 +12,6 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
 //database...
 var dataRef = firebase.database();
 
@@ -69,12 +68,12 @@ dataRef.ref().on("child_added", function (childSnapshot) {
   var tr;
   tr = $('<tr/>');
   tr.attr("id","tr-" + snapshotKey + "");
-  tr.append("<td class='name'>" + name + "</td>");
-  tr.append("<td>" + destination + "</td>");
-  tr.append("<td>" + frequency + "</td>");
-  tr.append("<td class='train-time-" + snapshotKey + "''>" + trainArrivalTime + "</td>");
+  tr.append("<td id='name-" +snapshotKey+ "'>" + name + "</td>");
+  tr.append("<td id='destination-" +snapshotKey+ "'>" + destination + "</td>");
+  tr.append("<td id='frequency-" + snapshotKey+ "'>" + frequency + "</td>");
+  tr.append("<td id='train-time-" + snapshotKey + "''>" + trainArrivalTime + "</td>");
   tr.append("<td id='minTillTrain-" + snapshotKey + "'>" + minutesUntilTrain + "</td>");
-  tr.append("<td> <button id='btn-" + snapshotKey + "'> Remove </button>"+ "</td>")
+  tr.append("<td> <button id='btn-" + snapshotKey + "'> Remove </button>"+ "<br><button id='btnEdit-" + snapshotKey + "'> Edit</button></td>");
 
   $("#tables-rows").append(tr);
 
@@ -84,7 +83,7 @@ dataRef.ref().on("child_added", function (childSnapshot) {
       minutesUntilTrain=frequency;
       //updating next trainArrivalTime in the DOM
       trainArrivalTime=moment().add(frequency, "minutes").format('HH:mm a');
-      $(`.train-time-${snapshotKey}`).text(trainArrivalTime);
+      $(`#train-time-${snapshotKey}`).text(trainArrivalTime);
     }
      //updating minutes left in the DOM 
     $(`#minTillTrain-${snapshotKey}`).text(minutesUntilTrain);
@@ -93,10 +92,51 @@ dataRef.ref().on("child_added", function (childSnapshot) {
   }, 60000);
 
   $("#btn-" + snapshotKey + "").on("click",function(){
-    alert("hola!");
     $("#tr-"+snapshotKey+"").remove();
     childSnapshot.getRef().remove();
     });
+
+    $("#btnEdit-" + snapshotKey + "").on("click",function(){
+
+      tr.append("<td> <button id='btnSave-" + snapshotKey + "'>Save</button></td>");
+      $(`#name-${snapshotKey}`).text("");
+      $(`#name-${snapshotKey}`).html('<input type="trainName" class="form-control" id="train-name-new" placeholder="">');
+      $(`#destination-${snapshotKey}`).text("");
+      $(`#destination-${snapshotKey}`).html('<input type="train-destination" class="form-control" id="destination-new" placeholder="">');     
+      $(`#frequency-${snapshotKey}`).text("");
+      $(`#frequency-${snapshotKey}`).html('<input type="frequency-min" class="form-control" id="frequency-new" placeholder="">');     
+      $(`#train-time-${snapshotKey}`).text("");
+      $(`#train-time-${snapshotKey}`).html('<input type="first-train" class="form-control" id="first-train-time-new" placeholder="">');
+
+      $("#btnEdit-" + snapshotKey + "").hide();
+      
+      $("#btnSave-"+ snapshotKey + "").on("click",function(){
+        console.log("Hola");
+        name = $("#train-name-new").val().trim();
+        destination = $("#destination-new").val().trim();
+        firstTrainTime = $("#first-train-time-new").val().trim();
+        frequency = $("#frequency-new").val().trim();
+  
+        $(`#name-${snapshotKey}`).text(name);
+        $(`#destination-${snapshotKey}`).text(destination);
+        $(`#frequency-${snapshotKey}`).text(frequency);
+        $(`#train-time-${snapshotKey}`).text(firstTrainTime);
+        
+        childSnapshot.getRef().update({
+          name: name,
+          destination: destination,
+          frequency: frequency,
+          firstTrainTime: firstTrainTime,
+        });
+        $("#btnEdit-" + snapshotKey + "").show();
+        location.reload(true);
+      });
+
+      // $("#tr-"+snapshotKey+"").remove();
+      // childSnapshot.getRef().remove();
+      });
+
+    
 
   // Handle the errors
 }, function (errorObject) {
