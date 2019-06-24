@@ -1,4 +1,24 @@
 body{
-    background-color: gray;
+    background-color:#b6819e;
     color: white;
+}
+
+.cards-to-style{
+    overflow: auto;
+    margin-right:3%;
+    margin-left:3%;
+    border: none;
+}
+
+.cards-header-to-style{
+    background-color:#fba100;
+}
+
+#submit{
+    background-color:#fba100;
+    border-color:  #fba100;
+}
+
+#title-box{
+    background-color:#fba100;
 }
