@@ -21,4 +21,26 @@ body{
 
 #title-box{
     background-color:#fba100;
+    padding: 0%;
+    padding-top: 2%;
 }
+
+button{
+    margin-bottom: 5%;
+    background-color:#fba100;
+    border-color:  #fba100;
+    border-radius: 8px;
+    color: white;
+    border: none;
+}
+
+.picture{
+    height: 270px;
+}
+
+@media only screen and (max-width: 674px) {
+    #card-header-one{
+        position:relative;
+        width: 650px;
+    }
+  }
